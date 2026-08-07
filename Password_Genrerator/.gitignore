@@ -1,0 +1,33 @@
+# Virtual environments
+.venv/
+.venv1/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+
+# IDE folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.flaskenv
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
