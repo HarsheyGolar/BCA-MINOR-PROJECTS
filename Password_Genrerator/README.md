@@ -1,7 +1,15 @@
-# 🔐 Password Generator
+<div align="center">
+  <h1>🔐 Password Generator</h1>
+  <p><strong>A sleek, simple, and secure password generator web application.</strong></p>
 
-A sleek, simple, and secure password generator web application. Create strong, random passwords with a single click and easily copy them to your clipboard.
+  <a href="https://bca-minor-projects-production.up.railway.app" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-View_Project-5A29E4?style=for-the-badge&logo=railway&logoColor=white" alt="Live Demo">
+  </a>
+</div>
 
+<br />
+
+Create strong, random passwords with a single click and easily copy them to your clipboard.
 ## ✨ Features
 
 - **Customizable Length**: Generate passwords of any length between 8 and 64 characters using an intuitive range slider.
