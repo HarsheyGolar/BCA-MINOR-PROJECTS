@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <div class="card">
+      <h1>Password Generator</h1>
+      <p>Create a strong password in one click, then copy it instantly.</p>
+
+      <div class="field">
+        <label for="lengthInput">Length</label>
+        <input id="lengthInput" type="range" min="8" max="64" value="16" />
+        <div class="length-row">
+          <span>8</span>
+          <span id="lengthValue">16</span>
+          <span>64</span>
+        </div>
+      </div>
+
+      <button id="generateButton" class="primary">Generate Password</button>
+
+      <div class="field result-field">
+        <label for="passwordOutput">Generated Password</label>
+        <div class="output-row">
+          <input id="passwordOutput" readonly placeholder="Your password appears here..." />
+          <button id="copyButton" class="secondary">Copy</button>
+        </div>
+      </div>
+
+      <p class="hint">Run <code>python main.py</code> and open <code>http://localhost:8000</code>.</p>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
