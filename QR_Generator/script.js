@@ -3,7 +3,7 @@ const input = document.getElementById('qrInput');
 const qrImage = document.getElementById('qrImage');
 
 function generateQRCode(value) {
-  qrImage.src = `/generate-qr?text=${encodeURIComponent(value)}`;
+  qrImage.src = `/api/generate-qr?text=${encodeURIComponent(value)}`;
   qrImage.alt = `QR code for ${value}`;
 }
 
