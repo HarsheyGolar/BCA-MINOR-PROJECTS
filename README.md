@@ -41,7 +41,7 @@ Explore the projects currently available in this repository:
 
 | Project Name | Description | Tech Stack | Status | Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **🔐 Password Generator** | A sleek, secure web app to generate and copy robust passwords instantly. | Python, Flask, HTML/JS/CSS, Docker | 🟢 Completed | [Source](./Password_Genrerator) <br> [Live Demo](https://bca-minor-projects-production.up.railway.app) |
+| **🔐 Password Generator** | A sleek, secure web app to generate and copy robust passwords instantly. | Python, Flask, HTML/JS/CSS, Docker | 🟢 Completed | [Source](./Password_Genrerator) <br> [Live Demo](https://bca-minor-projects-1.onrender.com/) |
 | *⏳ More Projects...* | *Future projects will be added here as they are developed.* | *TBA* | 🟡 In Progress | - |
 
 ## 🚀 Getting Started
