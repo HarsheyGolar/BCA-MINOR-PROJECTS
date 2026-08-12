@@ -20,7 +20,8 @@ def script():
     return send_file("script.js", mimetype="application/javascript")
 
 
-@app.route("/generate-qr")
+@app.route("/generate-qr", methods=["GET"])
+@app.route("/api/generate-qr", methods=["GET"])
 def generate():
     text = request.args.get("text", "").strip() or "https://example.com"
 
