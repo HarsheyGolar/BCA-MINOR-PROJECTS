@@ -19,6 +19,11 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![License](https://img.shields.io/badge/License-MIT-6aff9b?style=for-the-badge)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://bca-minor-projects.onrender.com/)
+
+<br/>
+
+🌐 **[▶ Try the Live Demo](https://bca-minor-projects.onrender.com/)**
 
 <br/>
 
@@ -62,6 +67,17 @@ QR_Generator/
 ├── qr_code.png      # Sample generated QR output
 └── README.md        # You're here!
 ```
+
+---
+
+## 🌐 Live Demo
+
+Try the app live — no setup required!
+
+👉 **[https://bca-minor-projects.onrender.com/](https://bca-minor-projects.onrender.com/)**
+
+> [!NOTE]
+> Hosted on [Render](https://render.com). The server may take a few seconds to wake up on the first visit (free-tier cold start).
 
 ---
 
