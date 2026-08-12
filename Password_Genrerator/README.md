@@ -2,7 +2,7 @@
   <h1>🔐 Password Generator</h1>
   <p><strong>A sleek, simple, and secure password generator web application.</strong></p>
 
-  <a href="https://bca-minor-projects-production.up.railway.app" target="_blank">
+  <a href="https://bca-minor-projects-1.onrender.com/" target="_blank">
     <img src="https://img.shields.io/badge/Live_Demo-View_Project-5A29E4?style=for-the-badge&logo=railway&logoColor=white" alt="Live Demo">
   </a>
 </div>
