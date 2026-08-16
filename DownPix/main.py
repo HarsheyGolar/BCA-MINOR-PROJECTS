@@ -1,4 +1,5 @@
 import requests
+import io
 from pathlib import Path
 from flask import Flask, jsonify, request, send_file
 
@@ -64,6 +65,15 @@ def download_image():
         # Send a GET request to stream the image data.
         response = requests.get(url, headers=headers, stream=True, timeout=10)
         response.raise_for_status()
+
+        image_binary = io.BytesIO(response.content)
+
+        return send_file(
+            image_binary,
+            mimetype=response.headers.get("Content-Type", "image/jpeg"),
+            as_attachment=True,
+            download_name=clean_url_end,
+        )
 
         # saves the file in chunks.
         with open(save_path, "wb") as file:
