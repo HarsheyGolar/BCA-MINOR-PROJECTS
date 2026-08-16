@@ -74,20 +74,6 @@ def download_image():
             as_attachment=True,
             download_name=clean_url_end,
         )
-
-        # saves the file in chunks.
-        with open(save_path, "wb") as file:
-            for chunk in response.iter_content(chunk_size = 8192):
-                file.write(chunk)
-
-        return (jsonify(
-            {
-                "status": "success",
-                "message": f"✓ Image saved to {save_path.resolve()}",
-            }
-        ), 
-        200,
-        )
     
     except requests.exceptions.Timeout:
         return jsonify(
