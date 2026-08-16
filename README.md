@@ -43,6 +43,7 @@ Explore the projects currently available in this repository:
 | :--- | :--- | :--- | :---: | :---: |
 | **🔐 Password Generator** | A sleek, secure web app to generate and copy robust passwords instantly. | Python, Flask, HTML/JS/CSS, Docker | 🟢 Completed | [Source](./Password_Genrerator) <br> [Live Demo](https://bca-minor-projects-1.onrender.com/) |
 | **📷 QR Generator** | A blazing-fast QR Code Generator that converts any URL, text, or contact info into a scannable QR code — right from your browser. Features a dark glassmorphism UI. | Python, Flask, HTML/JS/CSS | 🟢 Completed | [Source](./QR_Generator) <br> [Live Demo](https://bca-minor-projects.onrender.com/) |
+| **📸 DownPix** | A sleek, browser-based image downloader that fetches and streams any image directly to your device from a direct URL — no disk persistence, instant delivery. | Python, Flask, HTML/JS/CSS, Gunicorn | 🟢 Completed | [Source](./DownPix) <br> [Live Demo](https://bca-minor-projects-2.onrender.com/) |
 | *⏳ More Projects...* | *Future projects will be added here as they are developed.* | *TBA* | 🟡 In Progress | - |
 
 ## 🚀 Getting Started
