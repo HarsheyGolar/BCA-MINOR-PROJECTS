@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DownPix - Image Downloader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">📸</div>
+                <h1>DownPix</h1>
+            </div>
+            <p class="subtitle">Fast & Simple Image Downloader</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="card">
+                <!-- Input Section -->
+                <div class="input-section">
+                    <label for="imageUrl" class="label">Image URL</label>
+                    <input 
+                        type="url" 
+                        id="imageUrl" 
+                        class="input-field" 
+                        placeholder="Enter image URL here..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <!-- Save Folder Section -->
+                <div class="input-section">
+                    <label for="saveFolder" class="label">Save Folder (Optional)</label>
+                    <input 
+                        type="text" 
+                        id="saveFolder" 
+                        class="input-field" 
+                        placeholder="Default: downloads"
+                        value="downloads"
+                    >
+                </div>
+
+                <!-- Download Button -->
+                <button id="downloadBtn" class="download-btn">
+                    <span class="btn-text">Download</span>
+                    <div class="btn-loader"></div>
+                </button>
+
+                <!-- Status Message -->
+                <div id="statusMessage" class="status-message"></div>
+
+                <!-- Progress Bar -->
+                <div id="progressContainer" class="progress-container hidden">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <p id="progressText" class="progress-text">0%</p>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <div class="info-item">
+                    <span class="info-icon">✓</span>
+                    <span>Direct URL support</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">⚡</span>
+                    <span>Fast downloads</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">🎨</span>
+                    <span>Multiple formats</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 DownPix. Download with ease.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
