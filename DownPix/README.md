@@ -8,6 +8,7 @@
 [![Flask](https://img.shields.io/badge/Flask-3.0.3-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![Gunicorn](https://img.shields.io/badge/Gunicorn-23.0.0-499848?style=for-the-badge&logo=gunicorn&logoColor=white)](https://gunicorn.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://bca-minor-projects-2.onrender.com/)
 
 > **DownPix** is a sleek, browser-based image downloader powered by a lightweight Flask backend.  
 > Paste any direct image URL — DownPix fetches, streams, and saves it to your device instantly.
@@ -54,7 +55,7 @@ DownPix/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/BCA-MINOR-PROJECTS.git
+git clone https://github.com/HarsheyGolar/BCA-MINOR-PROJECTS.git
 cd BCA-MINOR-PROJECTS/DownPix
 ```
 
@@ -148,6 +149,21 @@ gunicorn==23.0.0
 ---
 
 ## 🌍 Deployment
+
+### 🔗 Live Demo
+
+> The app is deployed and publicly accessible on **Render**:
+
+<div align="center">
+
+[![🚀 Open DownPix Live](https://img.shields.io/badge/🚀%20Open%20DownPix%20Live-bca--minor--projects--2.onrender.com-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://bca-minor-projects-2.onrender.com/)
+
+</div>
+
+> [!NOTE]
+> Hosted on Render's free tier — the app may take **10–30 seconds** to wake up on the first visit.
+
+---
 
 ### Using Gunicorn (Production)
 
