@@ -1,7 +1,6 @@
 import requests
 import io
-from pathlib import Path
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, request, send_file
 
 app = Flask(__name__)
 
@@ -18,102 +17,66 @@ def scripts():
     return send_file("script.js", mimetype="application/js")
 
 
-@app.route("/api/download", methods=["POST"])
+@app.route("/api/download", methods=["GET"])
 def download_image():
-    """Downloads an image from a URL and saves it to a local folder.
+    """
+    Streams an image directly to the user's Downloads folder.
     
-    Expects JSON body with:
-        - url: The direct link to the image.
-        - save_folder: The folder where the image will be stored.
-
+    Query parameters:
+        - url: The direct link to the image (required)
+    
     Returns: 
-        JSON response with status and message.
-    
+        Binary image stream with Content-Disposition: attachment header
     """
     try:
-        # Extract parameters from JSON body
-        data = request.get_json()
-        if not data:
-            return jsonify({"status": "error", "message": "Invalid request"}), 400
-        
-        url = data.get("url", "").strip()
-        save_folder = data.get("save_folder", "downloads").strip()
+        # Extract the image URL from query parameters
+        image_url = request.args.get('url', '').strip()
         
         # Validate URL
-        if not url:
-            return jsonify({"status": "error", "message": "URL is required"}), 400
+        if not image_url:
+            return "Error: No URL provided", 400
         
-        # Convert string folder into path object.
-        folder_path = Path(save_folder)
-        folder_path.mkdir(parents=True, exist_ok=True)
-
-        # Extract the filename from the url, cleaning off any url parameters (?)
-        clean_url_end = url.split("/")[-1].split("?")[0]
-
-        # fallback name if url doesn't end with valid filename extension.
-        if not clean_url_end or "." not in clean_url_end:
-            clean_url_end = "downloaded_image.jpg"
-
-        # Combine folder path and file name using the modern '/' operator.
-        save_path = folder_path / clean_url_end
-
-        # Adding a browser User-Agent.
+        # Desktop browser User-Agent to bypass restrictions
         headers = {
-            "user-agent": "Mozilla/5.0 (windows NT 10.0; Win64; x64) Applewebkit/537.36 (KHTML, like Gecko) chrome/120.0.0.0 safari/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         }
-
-        # Send a GET request to stream the image data.
-        response = requests.get(url, headers=headers, stream=True, timeout=10)
+        
+        # Fetch the image from the remote URL with 15s timeout
+        response = requests.get(image_url, headers=headers, timeout=15)
         response.raise_for_status()
-
-        image_binary = io.BytesIO(response.content)
-
+        
+        # Extract filename from URL, clean off query parameters
+        filename = image_url.split("/")[-1].split("?")[0]
+        
+        # Fallback filename if URL doesn't contain a valid filename
+        if not filename or "." not in filename:
+            filename = "downloaded_image.jpg"
+        
+        # Read the binary content into memory (no disk persistence)
+        image_stream = io.BytesIO(response.content)
+        
+        # Stream the file directly to user's Downloads with proper headers
         return send_file(
-            image_binary,
+            image_stream,
             mimetype=response.headers.get("Content-Type", "image/jpeg"),
             as_attachment=True,
-            download_name=clean_url_end,
+            download_name=filename
         )
     
     except requests.exceptions.Timeout:
-        return jsonify(
-            {
-                "status": "error",
-                "message": "Download timeout. The URL took too long to respond."
-            }
-        ), 408
+        return "Error: Remote server took too long to respond (timeout after 15s)", 408
     
     except requests.exceptions.ConnectionError:
-        return jsonify(
-            {
-                "status": "error",
-                "message": "Connection error. Please check the URL and try again."
-            }
-        ), 400
+        return "Error: Could not connect to the image URL. Check the URL and your internet connection.", 400
+    
+    except requests.exceptions.HTTPError as e:
+        return f"Error: HTTP {e.response.status_code} - {e.response.reason}", e.response.status_code
     
     except requests.exceptions.RequestException as e:
-        return jsonify(
-            {
-                "status": "error",
-                "message": f"Download failed: {str(e)}"
-            }
-        ), 500
-    
-    except FileNotFoundError:
-        return jsonify(
-            {
-                "status": "error",
-                "message": "Failed to save file. Check folder permissions."
-            }
-        ), 500
+        return f"Error: Failed to fetch image - {str(e)}", 500
     
     except Exception as e:
-        return jsonify(
-            {
-                "status": "error",
-                "message": f"An error occurred: {str(e)}"
-            }
-        ), 500
+        return f"Error: An unexpected error occurred - {str(e)}", 500
 
 
 if __name__=="__main__":

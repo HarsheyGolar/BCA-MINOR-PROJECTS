@@ -1,6 +1,5 @@
 // DOM Elements
 const imageUrlInput = document.getElementById('imageUrl');
-const saveFolderInput = document.getElementById('saveFolder');
 const downloadBtn = document.getElementById('downloadBtn');
 const statusMessage = document.getElementById('statusMessage');
 const progressContainer = document.getElementById('progressContainer');
@@ -16,7 +15,6 @@ imageUrlInput.addEventListener('keypress', (e) => {
 // Main Download Handler
 function handleDownload() {
     const imageUrl = imageUrlInput.value.trim();
-    const saveFolder = saveFolderInput.value.trim() || 'downloads';
 
     // Validation
     if (!imageUrl) {
@@ -41,7 +39,7 @@ function handleDownload() {
 
         // Create a hidden anchor element
         const link = document.createElement('a');
-        link.href = `/download_image?url=${encodeURIComponent(imageUrl)}&save_folder=${encodeURIComponent(saveFolder)}`;
+        link.href = `/api/download?url=${encodeURIComponent(imageUrl)}`;
         link.style.display = 'none';
         link.setAttribute('download', '');
 
@@ -52,7 +50,7 @@ function handleDownload() {
 
         // Complete the progress animation
         completeProgress();
-        showMessage('✓ Download started! Check your Downloads folder.', 'success');
+        showMessage('✓ Download started! Your image is being saved to Downloads.', 'success');
         clearInputs();
 
     } catch (error) {
