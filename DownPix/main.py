@@ -121,10 +121,7 @@ def download_image():
 
 
 if __name__=="__main__":
-    # target_url = "https://media.istockphoto.com/id/1321538260/photo/beach-sunset-mazatl%C3%A1n-sinaloa-beautifull-travel-destination.jpg?s=612x612&w=0&k=20&c=Il34sgQ1QkfJb9ODtVXkUVnDgu6IiORJEjm_ejLqMYQ="
+   import os
 
-    # print("starting downloading...")
-    # result = image_url(target_url)
-    # print(result)
-    print("Starting Web Server...")
-    app.run(debug=True, port=5000)
+   port = int(os.environ.get("PORT", 5000))
+   app.run(host="0.0.0.0", port=port)
