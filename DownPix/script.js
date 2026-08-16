@@ -14,17 +14,17 @@ imageUrlInput.addEventListener('keypress', (e) => {
 });
 
 // Main Download Handler
-async function handleDownload() {
-    const url = imageUrlInput.value.trim();
+function handleDownload() {
+    const imageUrl = imageUrlInput.value.trim();
     const saveFolder = saveFolderInput.value.trim() || 'downloads';
 
     // Validation
-    if (!url) {
+    if (!imageUrl) {
         showMessage('Please enter a valid image URL', 'error');
         return;
     }
 
-    if (!isValidUrl(url)) {
+    if (!isValidUrl(imageUrl)) {
         showMessage('Please enter a valid URL', 'error');
         return;
     }
@@ -39,37 +39,22 @@ async function handleDownload() {
         // Simulate download progress for smooth UX
         simulateProgress();
 
-        // Send download request to backend
-        const response = await fetch('/api/download', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                url: url,
-                save_folder: saveFolder
-            })
-        }).catch(() => {
-            // Fallback: Show success message (backend handles it locally)
-            return null;
-        });
+        // Create a hidden anchor element
+        const link = document.createElement('a');
+        link.href = `/download_image?url=${encodeURIComponent(imageUrl)}&save_folder=${encodeURIComponent(saveFolder)}`;
+        link.style.display = 'none';
+        link.setAttribute('download', '');
 
-        // Handle response
-        if (response && response.ok) {
-            const data = await response.json();
-            completeProgress();
-            showMessage(data.message || 'Download successful! ✓', 'success');
-            clearInputs();
-        } else if (response && !response.ok) {
-            const data = await response.json();
-            resetProgress();
-            showMessage(data.message || 'Download failed. Please try again.', 'error');
-        } else {
-            // Fallback message if running without Flask backend
-            completeProgress();
-            showMessage('Download request sent! Check your downloads folder.', 'success');
-            clearInputs();
-        }
+        // Append to body, trigger click, and remove
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Complete the progress animation
+        completeProgress();
+        showMessage('✓ Download started! Check your Downloads folder.', 'success');
+        clearInputs();
+
     } catch (error) {
         console.error('Error:', error);
         resetProgress();
