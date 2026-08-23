@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>J.A.R.V.I.S. | Personal Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+  <div class="app-shell" id="appShell">
+    <aside class="sidebar" aria-label="Conversation navigation">
+      <div class="brand-row">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div><p class="eyebrow">Personal intelligence</p><h1>J.A.R.V.I.S.</h1></div>
+        <button class="icon-button mobile-close" id="closeSidebar" aria-label="Close navigation">&#10005;</button>
+      </div>
+
+      <button class="new-chat-button" id="newChat"><span class="plus">+</span><span>New conversation</span><kbd>Ctrl K</kbd></button>
+      <label class="search-box" for="chatSearch"><span aria-hidden="true">&#8981;</span><input id="chatSearch" type="search" placeholder="Search conversations" autocomplete="off"></label>
+
+      <div class="conversation-heading"><span>Recent conversations</span><span class="count" id="conversationCount">0</span></div>
+      <div class="conversation-list" id="conversationList"></div>
+
+      <div class="sidebar-footer">
+        <div class="memory-status"><span class="status-dot"></span><span><strong>Memory core</strong><small>Active &middot; Chroma connected</small></span></div>
+        <button class="profile-card" id="openProfile"><span class="avatar" id="sidebarAvatar">HG</span><span><strong id="sidebarName">Harshey Golar</strong><small>Personal workspace</small></span><span class="more">&middot;&middot;&middot;</span></button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <button class="icon-button menu-button" id="openSidebar" aria-label="Open navigation">&#9776;</button>
+        <div class="model-picker-wrap">
+          <button class="model-picker" id="modelPicker" aria-expanded="false"><span class="model-orb"></span><span><strong id="activeModel">Llama 3</strong><small>Local model</small></span><span class="chevron">&#8964;</span></button>
+          <div class="model-menu" id="modelMenu" hidden>
+            <button data-model="Llama 3" data-detail="Local model"><span class="model-orb green"></span><span><strong>Llama 3</strong><small>Fast and private</small></span><span class="check">&#10003;</span></button>
+            <button data-model="Analyst" data-detail="Local model"><span class="model-orb amber"></span><span><strong>Analyst</strong><small>Deep reasoning mode</small></span><span class="check"></span></button>
+            <button data-model="Creative" data-detail="Local model"><span class="model-orb coral"></span><span><strong>Creative</strong><small>Ideas and language</small></span><span class="check"></span></button>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-button" id="themeToggle" aria-label="Switch theme" title="Switch theme">&#9789;</button>
+          <button class="settings-button" id="openSettings"><span>&#9881;</span><span>Settings</span></button>
+        </div>
+      </header>
+
+      <section class="chat-area" id="chatArea">
+        <div class="welcome-state" id="welcomeState">
+          <div class="welcome-orbit"><div class="orbit-ring"></div><div class="welcome-mark"><span></span><span></span><span></span></div></div>
+          <p class="eyebrow">System online</p>
+          <h2>How can I make your<br><em>day more intelligent?</em></h2>
+          <p class="welcome-copy">Your private thinking partner for research, planning, and getting things done.</p>
+          <div class="prompt-grid">
+            <button class="prompt-card" data-prompt="Help me plan my priorities for today."><span class="prompt-icon">&#10024;</span><span><strong>Plan my day</strong><small>Turn a busy list into focus</small></span><span class="arrow">&#8599;</span></button>
+            <button class="prompt-card" data-prompt="Give me a clear explanation of how neural networks learn."><span class="prompt-icon">&#9673;</span><span><strong>Explain a concept</strong><small>Make something complex clear</small></span><span class="arrow">&#8599;</span></button>
+            <button class="prompt-card" data-prompt="Help me brainstorm three fresh ideas for a personal project."><span class="prompt-icon">&#10022;</span><span><strong>Explore ideas</strong><small>Start with a blank canvas</small></span><span class="arrow">&#8599;</span></button>
+            <button class="prompt-card" data-prompt="Create a concise checklist for my next project milestone."><span class="prompt-icon">&#10003;</span><span><strong>Make a checklist</strong><small>Move from thought to action</small></span><span class="arrow">&#8599;</span></button>
+          </div>
+        </div>
+        <div class="messages" id="messages" aria-live="polite"></div>
+        <div class="thinking-row" id="thinkingRow" hidden><span class="thinking-avatar"><span></span><span></span><span></span></span><span>J.A.R.V.I.S. is thinking</span><i></i></div>
+      </section>
+
+      <footer class="composer-wrap">
+        <form class="composer" id="chatForm"><textarea id="messageInput" rows="1" placeholder="Message J.A.R.V.I.S..." aria-label="Message J.A.R.V.I.S."></textarea><div class="composer-tools"><span class="composer-hint">Press Enter to send <kbd>Shift Enter</kbd> for a new line</span><button class="send-button" type="submit" aria-label="Send message"><span>&#8593;</span></button></div></form>
+        <p class="disclaimer">J.A.R.V.I.S. can make mistakes. Check important information.</p>
+      </footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" hidden>
+      <div class="modal-header"><div><p class="eyebrow">Workspace controls</p><h2 id="settingsTitle">Settings</h2></div><button class="icon-button close-modal" aria-label="Close settings">&#10005;</button></div>
+      <div class="settings-section"><label class="setting-row"><span><strong>Appearance</strong><small>Choose how J.A.R.V.I.S. looks</small></span><select id="appearanceSelect"><option value="system">System default</option><option value="light">Light</option><option value="dark">Dark</option></select></label><label class="setting-row"><span><strong>Remember conversations</strong><small>Keep chats in this browser</small></span><input class="toggle" id="rememberToggle" type="checkbox" checked></label></div>
+      <div class="modal-actions"><button class="secondary-button close-modal">Cancel</button><button class="primary-button close-modal">Done</button></div>
+    </section>
+    <section class="modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileTitle" hidden>
+      <div class="modal-header"><div><p class="eyebrow">Identity</p><h2 id="profileTitle">Edit profile</h2></div><button class="icon-button close-modal" aria-label="Close profile">&#10005;</button></div>
+      <div class="profile-edit"><span class="large-avatar" id="profileAvatar">HG</span><label>Display name<input id="profileName" value="Harshey Golar" maxlength="40"></label><label>Workspace note<input id="profileNote" value="Personal workspace" maxlength="60"></label></div>
+      <div class="modal-actions"><button class="secondary-button close-modal">Cancel</button><button class="primary-button" id="saveProfile">Save changes</button></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="startup" id="startup"><div class="startup-mark"><span></span><span></span><span></span></div><p>J.A.R.V.I.S.</p><small>Initializing intelligence core</small><div class="startup-line"><i></i></div></div>
+  <script src="./app.js"></script>
+</body>
+</html>
